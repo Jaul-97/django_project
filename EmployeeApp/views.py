@@ -30,7 +30,7 @@ def employeelist(request):
 
 def addemp(request):
     if request.method=="GET":
-        return render(request,'AddEmployee.html',{'emp',{}})
+        return render(request,'AddEmployee.html')
     if request.method=="POST":
         form=EmpForm(request.POST)
         if form.is_valid():
@@ -39,7 +39,7 @@ def addemp(request):
             dept=form.cleaned_data.get("dept")
             desg=form.cleaned_data.get("desg")
             salary=form.cleaned_data.get("salary")
-            # print (id,empname,dept,desg,salary)
+           
             conn=connection()
             cursor=conn.cursor()
             cursor.execute("Insert into dbo.Employee values(?,?,?,?,?)",id,empname,dept,desg,salary)
@@ -54,19 +54,19 @@ def updateemp(request,id):
     if request.method=="GET":
         cursor.execute("select * from dbo.Employee where empid=?",id)
         for row in cursor.fetchall():
-            emp.append({"id:":row[0],"empname:":row[1],"dept:":row[2],"desg":row[3],"salary:":row[4],})
+            emp.append({"id":row[0],"empname":row[1],"dept":row[2],"desg":row[3],"salary":row[4]})
             conn.close()
             return render(request,"AddEmployee.html",{'emp':emp[0]})
 
     if request.method=="POST":
         form=EmpForm(request.POST)
         if form.is_valid():
-            id=form.cleaned_data.get("id")
+            
             empname=form.cleaned_data.get("empname")
             dept=form.cleaned_data.get("dept")
             desg=form.cleaned_data.get("desg")
             salary=form.cleaned_data.get("salary")
-            cursor.execute("Update dbo.Employee set empname=?,dept=?,desg=?,salary=? where empid=?",id,empname,dept,desg,salary)
+            cursor.execute("Update dbo.Employee set name=?,dept=?,desg=?,salary=? where empid=?",empname,dept,desg,salary,id)
 
             conn.commit()
             conn.close()
@@ -78,7 +78,7 @@ def deleteemp(request,id):
     cursor.execute("delete from dbo.Employee where empid=?",id)
     conn.commit()
     conn.close()
-    return render("EmployeeList")
+    return redirect("EmployeeList")
 
 
     
