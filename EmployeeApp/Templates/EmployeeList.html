@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee list</title>
+</head>
+<body>
+    <a href="addemp">Add Employee</a>
+    <h1>List of Employees</h1>
+    <table border="1">
+        <thread>
+            <tr>
+                <th>EmpID</th>
+                <th>Name</th>
+                <th>Dept</th>
+                <th>Desg</th>
+                <th>Salary</th>
+            </tr>
+        </thread>
+        <tbody>
+          
+            {% for e in EL %}
+            <tr>
+                <td>{{e.EmpID}}</td>
+                <td>{{e.Name}}</td>
+                <td>{{e.Dept}}</td>
+                <td>{{e.Desg}}</td>
+                <td>{{e.Salary}}</td>
+                <td><a href='updateemp/{{e.EmpID}}'>Edit</a></td>
+                <td><a href='deleteemp/{{e.EmpID}}'>Delete</a></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</body>
+</html>
+
+ 

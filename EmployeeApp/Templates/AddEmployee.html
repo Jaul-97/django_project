@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        <table border="1">
+            <tr>
+                <td>
+                   Enter Employee ID
+                </td>
+                <td><input type="text" id="id" name="id" value="{{emp.id}}"/></td>
+            </tr>
+            <tr>
+                <td>
+                   Enter Employee Name
+                </td>
+                <td><input type="text" id="empname" name="empname" value="{{emp.empname}}"/></td>
+            </tr>
+            <tr>
+                <td>
+                   Select Department 
+                </td>
+                <td><select name="dept" id="dept" value="{{emp.desg}}">
+                    <option value="">Select</option>
+                    <option value="CSC">Comp Sc</option>
+                    <option value="EI">Elec Inst</option>
+                    <option value="Mech">Mechanical</option>
+                    <option value="ET">Telecom</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>
+                   Select Designation 
+                </td>
+                <td><select name="desg" id="desg" value="{{emp.desg}}">
+                    <option value="">Select</option>
+                    <option value="JIT">Jyothy</option>
+                    <option value="JSS">JSSATE</option>
+                    <option value="ACS">ACSE</option>
+                    <option value="GT">Global Tech</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Enter Salary</td>
+                <td><input type="number" id="salary" name="salary" value="{{emp.salary}}"/></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Add Employee</button></td>
+            </tr>
+        </table>
+    </form>
+    
+</body>
+</html>
